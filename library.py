@@ -20,3 +20,10 @@ class Library:
             book.is_borrowed = True
             return True
         return False
+
+    def return_book(self, isbn):
+        book = self.find_book_by_isbn(isbn)
+        if book and book.is_borrowed:
+            book.is_borrowed = False
+            return True
+        return False
