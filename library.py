@@ -13,3 +13,10 @@ class Library:
 
     def find_book_by_isbn(self, isbn):
         return next((book for book in self.books if book.get_isbn() == isbn), None)
+
+    def borrow_book(self, isbn):
+        book = self.find_book_by_isbn(isbn)
+        if book and not book.is_borrowed:
+            book.is_borrowed = True
+            return True
+        return False
