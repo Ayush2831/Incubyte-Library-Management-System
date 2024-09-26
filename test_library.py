@@ -40,6 +40,16 @@ class TestLibrary(unittest.TestCase):
         self.library.add_book(book)
         self.assertFalse(self.library.return_book("123456789"))
 
+    def test_view_available_books(self):
+        book1 = Book("123456789", "Test Book", "Test Author", 2023)
+        book2 = Book("987654321", "Another Book", "Another Author", 2022)
+        self.library.add_book(book1)
+        self.library.add_book(book2)
+        self.library.borrow_book("123456789")
+        available_books = self.library.view_available_books()
+        self.assertEqual(len(available_books), 1)
+        self.assertIn(book2, available_books)
+
 
 if __name__ == '__main__':
     unittest.main()
